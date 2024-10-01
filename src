@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cebolinha</title>
+    <link rel="stylesheet" href="./style.css">
+    
+</head>
+
+<body>
+  
+   <!-- CSS -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+
+* {
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;    
+}
+
+body{
+    background-color: rgb(236, 236, 236);
+}
+
+
+.game-board {
+    
+    width: 100%;
+    height: 500px;
+    border-top: 800px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  background-image: url ('https://pbs.twimg.com/media/EVLyO8VVAAIt1ru.jpg:large')
+    /*background: linear-gradient(#87CEE8, #E0F6FF); */
+}
+
+
+
+
+/*=============== cebolinha ===============*/
+
+.cebolinha {
+    width: 60px;
+    position: absolute;
+    bottom: 0;
+    margin-left: 100px;
+    padding-bottom: 34px;
+    z-index: 10;
+}
+
+.jump{
+    animation: cebolinha-jump-animation 1500ms ease-out;
+}
+
+@keyframes cebolinha-jump-animation {
+    0%{
+        bottom: 0px;
+    }
+    45%{
+        bottom: 180px
+    }
+    55%{
+        bottom: 180px;
+    }
+    100%{
+        bottom:0px;
+    }
+    
+}
+
+
+
+
+
+
+/*=============== Cenário ===============*/
+
+/*Tubulação */
+.pipe {
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    right: -80px;
+    padding-bottom: 34px;
+    z-index: 10;
+}
+
+.pipe-animation{
+    animation: grass-animation 3s infinite linear;
+}
+
+@keyframes pipe-animation {
+    from{
+        right: -80px;
+    }
+    to{
+        right: 100%;
+    }
+    
+}
+
+/*Grama */
+.grass {
+    position: absolute;
+    bottom: 0;
+    width: 160px;
+    right: -160px;
+    padding-bottom: 34px;
+}
+
+.grass-animation{
+    animation: grass-animation 3s infinite linear;
+}
+
+@keyframes grass-animation {
+    from{
+        right: -80px;
+    }
+    to{
+        right: 100%;
+    }
+    
+}
+
+
+/*Piso*/
+.floor {
+        width: 1500px;
+        position: absolute;
+        bottom: 0;
+        padding-bottom: 34px;
+       
+}
+.floor-1{
+    position: absolute;  
+    z-index: 0;
+}
+
+.floor-animation-1{
+    animation: floor-animation-1 3.1s infinite linear;
+}
+
+@keyframes floor-animation-1 {
+    0%{
+        right:0px;
+    }
+    100%{
+        right: 100%;    
+    }
+}
+
+
+
+
+.floor-2{
+    position: absolute; 
+    right: -1500px;
+    z-index: 10;
+}
+
+.floor-animation-2{
+    animation: floor-animation-2 6.2s infinite linear;
+}
+
+@keyframes floor-animation-2 {
+    0%{
+        right:-1500px;
+    }
+    100%{
+        right: 100%;    
+    }
+}
+
+
+
+
+.floor-3{
+    position: absolute;  
+    right: -1500px;
+    z-index: 10;
+}
+
+.floor-animation-3{
+    animation: floor-animation-3 6.2s infinite linear;
+}
+
+@keyframes floor-animation-3 {
+    0%{
+        right:-1500px;
+    }
+    100%{
+        right: 100%;    
+    }
+}
+
+
+
+
+/*Nuvens*/
+.clouds-1 {
+    position: absolute;
+    width: 550px;
+    padding-top: 50px;
+    z-index: 4;
+    animation: clouds-animation-1 40s infinite linear;
+}
+.clouds-2 {
+    position: absolute;
+    width: 270px;
+    padding-top: 150px;
+    z-index: 3;
+    animation: clouds-animation-2 50s infinite linear;
+}
+.clouds-3 {
+    position: absolute;
+    width: 150px;
+    padding-top: 300px;
+    z-index: 2;
+    animation: clouds-animation-3 75s infinite linear;
+}
+
+
+@keyframes clouds-animation-1 {
+    from{
+        right: -550px;
+    }
+    to{
+        right: 100%;
+    }
+}
+
+@keyframes clouds-animation-2 {
+    from{
+        right: -1300px;
+    }
+    to{
+        right: 100%;
+    }
+}
+
+@keyframes clouds-animation-3 {
+    from{
+        right: -250px;
+    }
+    to{
+        right: 100%;
+    }
+}
+
+
+p {
+    font-family:'Roboto Mono', monospace;
+    padding: 50px;
+    text-align: center;
+    color: black;
+}
+  </style>
+        <div class="game-board">
+            <img src="https://cdn.glitch.global/6a1cea08-2c27-4812-8a2b-ff9a496fa936/clouds.png?v=1654481949592" class="clouds-1">
+            <img src="https://cdn.glitch.global/6a1cea08-2c27-4812-8a2b-ff9a496fa936/clouds.png?v=1654481949592" class="clouds-2">
+            <img src="https://cdn.glitch.global/6a1cea08-2c27-4812-8a2b-ff9a496fa936/clouds.png?v=1654481949592" class="clouds-3">
+          <!-- https://cdn.glitch.global/6a1cea08-2c27-4812-8a2b-ff9a496fa936/deg1otx-a916ae66-7684-4530-af89-e53822fb8a58.gif?v=1654635023797-->
+            <img src="https://1.bp.blogspot.com/-0nTcemT1O5A/Xt70k-BEyRI/AAAAAAAAAt0/EUexsQxLIXQlB-_T5fJTDaR1bS1DdMT1QCLcBGAsYHQ/s1600/tchau%2Bcebolinha.gif" class="cebolinha">
+            <img src="https://images.vexels.com/media/users/3/157784/isolated/preview/bf2d571488a39e11419799c2a29a010d-cacto-fofo.png" class="pipe">
+            <img src="https://cdn.glitch.global/6a1cea08-2c27-4812-8a2b-ff9a496fa936/grass.png?v=1654481947804" class="grass">
+            
+        
+            <div class="floor">
+                <img src="https://cdn.glitch.global/6a1cea08-2c27-4812-8a2b-ff9a496fa936/floor.png?v=1654481947926" class="floor-1">
+                <img src="https://cdn.glitch.global/6a1cea08-2c27-4812-8a2b-ff9a496fa936/floor.png?v=1654481947926" class="floor-2">
+                <img src="https://cdn.glitch.global/6a1cea08-2c27-4812-8a2b-ff9a496fa936/floor.png?v=1654481947926" class="floor-3">
+            </div>
+        </div>
+
+
+<p id="text-start">Para jogar, pressione alguma tecla</p>
+  
+  <!-- Java Script -->
+  <script>
+  cebolinha = document.querySelector('.cebolinha');
+pipe = document.querySelector('.pipe');
+grass = document.querySelector('.grass');
+textStart = document.querySelector('text-start')
+audioStart = new Audio('https://cdn.glitch.global/6a1cea08-2c27-4812-8a2b-ff9a496fa936/theme.mp3?v=1654484161251')
+audioGameOver = new Audio('https://cdn.glitch.global/6a1cea08-2c27-4812-8a2b-ff9a496fa936/gameover.mp3?v=1654484160651')
+floor1 = document.querySelector('.floor-1')
+floor2 = document.querySelector('.floor-2')
+floor3 = document.querySelector('.floor-3')
+
+
+
+/*================ Função Start ===================*/ 
+
+const start = () => {
+
+    document.getElementById("text-start").style.color = "rgb(236, 236, 236)";
+
+    pipe.classList.add('pipe-animation');
+  
+/*Trocar o personagem em movimento*/
+    cebolinha.src = 'https://media1.giphy.com/media/j0S0O2IWbzafdKiIbI/giphy.gif?cid=790b76113fbb7f333fd3f661617a5fc33c026b7650ef05f7&rid=giphy.gif&ct=s';
+    cebolinha.style.width = '150px';
+    cebolinha.style.marginLeft = '50px';
+
+    function grassAnimation(){
+        grass.classList.add('grass-animation');
+            }setInterval(grassAnimation, 8000);
+
+
+    function floorAnimation1(){
+        floor1.classList.add('floor-animation-1');
+            }setInterval(floorAnimation1, 0);
+
+    function floorAnimation2(){
+        floor2.classList.add('floor-animation-2');
+            }setInterval(floorAnimation2, 0);
+                           
+    function floorAnimation3(){
+        floor3.classList.add('floor-animation-3');
+            }setInterval(floorAnimation3, 3100); 
+     
+            
+    audioStart.play();
+}
+
+document.addEventListener('keydown', start);
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*================ Função Pulo ===================*/ 
+
+const jump = () => {
+    cebolinha.classList.add('jump');
+
+    setTimeout(() => {
+        cebolinha.classList.remove('jump');
+    }, 1500); 
+}
+
+document.addEventListener('keydown', jump);
+
+
+
+
+
+
+
+/*================ Código para acabar o jogo ===================*/ 
+
+const checkGameOver = setInterval(() => {
+    const pipePosition = pipe.offsetLeft;
+    const cebolinhaPosition = +window.getComputedStyle(cebolinha).bottom.replace('px', '');
+    const grassPosition = grass.offsetLeft;
+    const floorPosition1 = floor1.offsetLeft;
+    const floorPosition2 = floor2.offsetLeft;
+    const floorPosition3 = floor3.offsetLeft;
+
+   
+        if (pipePosition <= 120 && pipePosition > 0 && cebolinhaPosition < 80 ) {
+
+            pipe.style.animation = 'none';
+            pipe.style.left = `${pipePosition}px`;
+
+            cebolinha.style.animation = 'none';
+            cebolinha.style.bottom = `${cebolinhaPosition}px`;
+
+            cebolinha.src = 'https://www.seekpng.com/png/detail/239-2391195_game-over-16-bit.png';
+            cebolinha.style.width = '75px';
+            cebolinha.style.marginLeft = '50px';
+
+            grass.style.animation = 'none';
+            grass.style.left = `${grassPosition}px`;
+
+            floor1.style.animation = 'none';
+            floor1.style.left = `${floorPosition1}px`;
+
+            floor2.style.animation = 'none';
+            floor2.style.left = `${floorPosition2}px`;
+
+            floor3.style.animation = 'none';
+            floor3.style.left = `${floorPosition3}px`;
+
+            document.getElementById("text-start").style.color = "black";
+            document.getElementById("text-start").innerHTML="<strong>GAME OVER</strong>";
+
+
+            function stopAudioStart(){
+                audioStart.pause();
+                }stopAudioStart();
+
+            audioGameOver.play();
+
+            function stopAudio(){
+                audioGameOver.pause();
+                }setTimeout(stopAudio, 8000);
+
+            clearInterval(checkGameOver);
+         }
+}, 10);
+
+
+  </script>   
+
+    <script src="./script.js" defer></script>   
+</body>
+</html>
